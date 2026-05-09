@@ -50,5 +50,7 @@ else
     echo -e "$Y expense user already created $N"
 fi
 
-mkdir /app &>>$LOGFILE
+mkdir -p /app &>>$LOGFILE
 VALIDATE $? "creating app dir"
+
+
