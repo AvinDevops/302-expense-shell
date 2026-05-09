@@ -53,4 +53,9 @@ fi
 mkdir -p /app &>>$LOGFILE
 VALIDATE $? "creating app dir"
 
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOGFILE
+VALIDATE $? "Downloading zip file to tmp"
 
+cd /app
+unzip /tmp/backend.zip &>>$LOGFILE
+VALIDATE $? "Extracting zip file in app folder"
