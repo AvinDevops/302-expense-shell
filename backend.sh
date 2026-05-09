@@ -64,7 +64,7 @@ VALIDATE $? "Extracting zip file in app folder"
 npm install &>>$LOGFILE
 VALIDATE $? "Installing dependencies"
 
-cp /home/ec2-user/302-expense-shell /etc/systemd/system/backend.service &>>$LOGFILE
+cp /home/ec2-user/302-expense-shell/backend.service /etc/systemd/system/backend.service &>>$LOGFILE
 VALIDATE $? "Copying backend service"
 
 systemctl daemon-reload &>>$LOGFILE
