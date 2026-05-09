@@ -52,7 +52,7 @@ mysql -h db.aviexpense.online -uroot -p${MYSQL_ROOT_PASSWd} -e 'show databases;'
 if [ $? -ne 0 ]
 then
     echo -e "$Y Root password is not set, now setting $N"
-    mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
+    mysql_secure_installation --set-root-pass ${MYSQL_ROOT_PASSWD} &>>$LOGFILE
     VALIDATE $? "Setting password for root"
 else
     echo -e "$G Already Root passwd is setted $N"
