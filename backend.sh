@@ -60,3 +60,27 @@ cd /app
 rm -rf /app/*
 unzip /tmp/backend.zip &>>$LOGFILE
 VALIDATE $? "Extracting zip file in app folder"
+
+npm install &>>$LOGFILE
+VALIDATE $? "Installing dependencies"
+
+cp /home/ec2-user/302-expense-shell /etc/systemd/system/backend.service &>>$LOGFILE
+VALIDATE $? "Copying backend service"
+
+systemctl daemon-reload &>>$LOGFILE
+VALIDATE $? "Daemon reloading"
+
+systemctl start backend &>>$LOGFILE
+VALIDATE $? "Starting backend service"
+
+systemctl enable backend &>>$LOGFILE
+VALIDATE $? "Enabiling backend service"
+
+dnf install mysql -y &>>$LOGFILE
+VALIDATE $? "Installing mysql client"
+
+mysql -h db.aviexpense.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOGFILE
+VALIDATE $? "Loading schema to db"
+
+systemctl restart backend &>>$LOGFILE
+VALIDATE $? "Restarting backend service"
